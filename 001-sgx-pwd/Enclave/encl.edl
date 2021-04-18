@@ -1,0 +1,22 @@
+enclave {
+	
+	trusted {
+        /* define ECALLs here. */
+        public int ecall_dummy(int i);
+
+        /* =========================== START SOLUTION =========================== */
+		
+		// returns allowed or not (return type int)
+		// secret_pt writes data back, so direction is out
+		// pwd take data input, so direction is in, and type is string
+		// if we write only [in] instead of [in,string], it'll take only one char and not complete string
+
+		public int ecall_get_secret([out] int* secret_pt, [in,string] char* pwd);
+        /* ============================ END SOLUTION ============================ */
+    };
+	
+	untrusted {
+        /* define OCALLs here. */
+        void ocall_print([in,string] const char *str);
+	};
+};
